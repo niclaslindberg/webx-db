@@ -68,7 +68,7 @@ Main features of webx-db are:
     $db->commitTx();
 
 ```
-Note: If an outer scope is rolled back all it's inner scopes are also rolled back.
+Note: If an outer tx is rolled back all its inner txs are also rolled back.
 
 
 
