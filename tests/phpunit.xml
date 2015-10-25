@@ -1,0 +1,8 @@
+<phpunit bootstrap="../vendor/autoload.php">
+    <testsuites>
+        <testsuite name="all">
+            <file>Db/MysqlInstanceProviderArrayTest.php</file>
+            <file>Db/DbTest.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>

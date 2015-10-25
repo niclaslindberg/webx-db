@@ -1,0 +1,23 @@
+{
+  "name" : "nillsoft/db",
+  "autoload": {
+    "psr-4": {
+      "Nillsoft\\Db\\":  "src/Db/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Nillsoft\\Db\\":  "tests/Db/"
+    }
+  },
+  "require-dev" : {
+    "phpunit/phpunit" : "4.8.16"
+  },
+  "authors": [
+    {
+      "name": "Nillsoft AB",
+      "email": "niclas.lindberg@nillsoft.com",
+      "homepage": "http://www.nillsoft.com"
+    }
+  ]
+}
