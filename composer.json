@@ -1,5 +1,6 @@
 {
   "name" : "webx/db",
+  "keywords" : ["mysql","database"],
   "autoload": {
     "psr-4": {
       "WebX\\Db\\":  "src/Db/"
@@ -11,6 +12,7 @@
     }
   },
   "require-dev" : {
+    "php": ">=5.5.0",
     "phpunit/phpunit" : "4.8.16"
   },
   "authors": [
@@ -19,5 +21,6 @@
       "email": "niclas.lindberg@nillsoft.com",
       "homepage": "http://www.nillsoft.com"
     }
-  ]
+  ],
+  "license": "MIT"
 }

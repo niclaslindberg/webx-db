@@ -28,7 +28,7 @@ Main features of webx-db
 ```php
     foreach($db->allRows("SELECT * FROM table") as $row) {
         echo($row['firstName']);
-        echo($row['lastName']); 
+        echo($row['lastName']);
     }
 ```
 
