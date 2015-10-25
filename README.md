@@ -19,6 +19,8 @@ Main features of webx-db
 
 ## How to run tests
 In the root of the project:
+
   `composer install`
+
   `phpunit -c tests`
 
