@@ -1,8 +1,9 @@
 # WebX-Db - Mysql PHP library
-Main features of webx-db are:
+Main features and design goals of webx-db:
 * Name based auto-escaped parametrization.
-* Nested transactions by using `savepoint X` and `rollback to savepoint X` in inner transactions.
+* Nested transaction support (`savepoint X` and `rollback to savepoint X`).
 * Key violation exception with name of violated key.
+* Easy to use in IOC based designs.
 
 ## Installing
     * Packagist: webx-db
