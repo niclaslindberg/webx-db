@@ -54,14 +54,14 @@ Main features of webx-db are:
 ```php
 
     $db->startTx();
-    $db->execute("INSERT INTO table (col) VALUES("1"));
+    $db->execute("INSERT INTO table (col) VALUES('1')");
 
         $db->startTx();
-        $db->execute("INSERT INTO table (col) VALUES("2")); // Will be rolled back
+        $db->execute("INSERT INTO table (col) VALUES('2')"); // Will be rolled back
         $db->rollbackTx();
 
         $db->startTx();
-        $db->execute("INSERT INTO table (col) VALUES("3"));
+        $db->execute("INSERT INTO table (col) VALUES('3')");
         $db->commitTx();
 
     $db->commitTx();
