@@ -4,6 +4,7 @@ Main features and design goals of webx-db:
 * Nested transaction support (`savepoint X` and `rollback to savepoint X`).
 * Key violation exception with name of violated key.
 * Easy to use in IOC based designs.
+* Light weight.
 
 ## Installing
     * Packagist: webx-db
@@ -18,6 +19,11 @@ Main features and design goals of webx-db:
         "password" => "mysqlPassword",
         "database" => "mysqlDatabase"
     ]);
+
+    //or
+
+    $db = new DbImpl($mysqli); //Instance of mysqli
+
 ```
 ### A simple insert
 ```php
