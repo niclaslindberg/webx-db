@@ -58,7 +58,7 @@ Main features of webx-db are:
     $db->execute("INSERT INTO table (col) VALUES('1')");
 
         $db->startTx();
-        $db->execute("INSERT INTO table (col) VALUES('2')"); // Will be rolled back
+        $db->execute("INSERT INTO table (col) VALUES('2')"); // Will not be commited
         $db->rollbackTx();
 
         $db->startTx();
