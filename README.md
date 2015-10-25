@@ -7,7 +7,11 @@ Main features of nillsoft-db
 
 ## How to use
 ```
-    $db = new Impl\DbImpl($config);
+    use Nillsoft\Db\Db;
+    use Nillsoft\Db\Impl\DbImpl;
+
+
+    $db = new DbImpl($config);
     $db->execute("INSERT INTO table (colA,colB) VALUES(:a,:b)",[a=>"valueA",b="valueB"];
 
 ```
