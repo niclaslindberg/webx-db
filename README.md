@@ -53,21 +53,18 @@ Main features of webx-db are:
     $db->startTx();
     $db->execute("INSERT INTO table (col) VALUES("1"));
 
-    $db->startTx();
-    $db->execute("INSERT INTO table (col) VALUES("2"));
-    $db->rollbackTx();
+        $db->startTx();
+        $db->execute("INSERT INTO table (col) VALUES("2")); // Will be rolled back
+        $db->rollbackTx();
 
-    $db->startTx();
-    $db->execute("INSERT INTO table (col) VALUES("3"));
-    $db->commitTx();
+        $db->startTx();
+        $db->execute("INSERT INTO table (col) VALUES("3"));
+        $db->commitTx();
 
     $db->commitTx();
 
 ```
-Database content after the above code is run.
-|col|
-|1|
-|3|
+
 
 
 ## How to run tests
