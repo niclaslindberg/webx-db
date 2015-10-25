@@ -2,7 +2,7 @@
 Main features of nillsoft-db
 
 * Name based auto-escaped parametrization.
-* Hierarchical transactions by using `savepoint X´ and `rollback to savepoint X´ in inner transactions.
+* Hierarchical transactions by using `savepoint X` and `rollback to savepoint X` in inner transactions.
 * Key violation exception with name of violated key.
 
 ## How to use
