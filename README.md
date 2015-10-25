@@ -28,7 +28,7 @@ Main features of webx-db
 ```php
     foreach($db->allRows("SELECT * FROM table") as $row) {
         echo($row['firstName']);
-        echo($row['lastName']);
+        echo($row['lastName']); 
     }
 ```
 
@@ -39,7 +39,7 @@ Main features of webx-db
         $db->execute("INSERT INTO people (firstName,lastName,email) VALUES(:firstName,:lastName,email)", $person);
         echo("Person registered");
     } catch(DbKeyException $e) {
-        if($e->key()==='emailKey') { // Name of the defined unique key in SQL
+        if($e->key()==='emailKey') { // Name of the defined unique key in MySQL
             echo("The email is already registered";
         } else {
             echo("Some other key violation occured.");
