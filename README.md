@@ -4,6 +4,9 @@ Main features of webx-db are:
 * Nested transactions by using `savepoint X` and `rollback to savepoint X` in inner transactions.
 * Key violation exception with name of violated key.
 
+## Installing
+    * Packagist: webx-db
+
 ## Getting started
 ```php
     use WebX\Db\Db;
