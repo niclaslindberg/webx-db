@@ -1,10 +1,10 @@
 <?php
 
-namespace Nillsoft\Db;
+namespace WebX\Db;
 
-use Nillsoft\Db\Impl\DbImpl;
-use Nillsoft\Db\Db;
-use Nillsoft\Db\DbKeyException;
+use WebX\Db\Impl\DbImpl;
+use WebX\Db\Db;
+use WebX\Db\DbKeyException;
 
 class DbTest extends TestInit
 {

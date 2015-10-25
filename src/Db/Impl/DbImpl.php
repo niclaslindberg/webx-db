@@ -1,12 +1,12 @@
 <?php
 
-namespace Nillsoft\Db\Impl;
-use Nillsoft\Db\Db;
-use Nillsoft\Db\DbListener;
-use Nillsoft\Db\QueryEscaper;
-use Nillsoft\Db\DbException;
-use Nillsoft\Db\DbDeadlockException;
-use Nillsoft\Db\DbKeyException;
+namespace WebX\Db\Impl;
+use WebX\Db\Db;
+use WebX\Db\DbListener;
+use WebX\Db\QueryEscaper;
+use WebX\Db\DbException;
+use WebX\Db\DbDeadlockException;
+use WebX\Db\DbKeyException;
 
 class DbImpl implements Db {
 	/**

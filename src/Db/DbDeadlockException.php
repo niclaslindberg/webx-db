@@ -1,5 +1,5 @@
 <?php
-namespace Nillsoft\Db;
+namespace WebX\Db;
 /**
  * A transcation deadlock occured
  * @author niclas

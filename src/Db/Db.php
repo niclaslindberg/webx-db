@@ -1,11 +1,11 @@
 <?php
 
-namespace Nillsoft\Db;
+namespace WebX\Db;
 
 
 /**
  * Interface Db
- * @package Nillsoft\Db
+ * @package WebX\Db
  */
 interface Db
 {

@@ -1,5 +1,5 @@
 # A simple Mysql PHP wrapper.
-Main features of nillsoft-db
+Main features of webx-db
 
 * Name based auto-escaped parametrization.
 * Hierarchical transactions by using `savepoint X` and `rollback to savepoint X` in inner transactions.
@@ -7,8 +7,8 @@ Main features of nillsoft-db
 
 ## How to use
 ```
-    use Nillsoft\Db\Db;
-    use Nillsoft\Db\Impl\DbImpl;
+    use WebX\Db\Db;
+    use WebX\Db\Impl\DbImpl;
 
 
     $db = new DbImpl($config);

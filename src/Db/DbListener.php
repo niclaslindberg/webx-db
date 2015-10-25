@@ -1,6 +1,6 @@
 <?php
 
-namespace Nillsoft\Db;
+namespace WebX\Db;
 
 
 /**

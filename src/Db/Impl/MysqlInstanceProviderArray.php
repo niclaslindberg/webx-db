@@ -1,8 +1,8 @@
 <?php
 
-namespace Nillsoft\Db\Impl;
-use Nillsoft\Db\DbException;
-use Nillsoft\Db\Impl\MysqlInstanceProvider;
+namespace WebX\Db\Impl;
+use WebX\Db\DbException;
+use WebX\Db\Impl\MysqlInstanceProvider;
 
 
 class MysqlInstanceProviderArray implements MysqlInstanceProvider {

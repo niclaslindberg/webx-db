@@ -1,5 +1,5 @@
 <?php
-namespace Nillsoft\Db;
+namespace WebX\Db;
 
 /**
  * Top exception for all exceptions thrown by DB

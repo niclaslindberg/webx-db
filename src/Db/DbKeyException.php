@@ -1,5 +1,5 @@
 <?php
-namespace Nillsoft\Db;
+namespace WebX\Db;
 
 /**
  * Error for key violations of DB

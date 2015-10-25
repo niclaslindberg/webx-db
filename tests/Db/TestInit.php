@@ -1,6 +1,6 @@
 <?php
 
-namespace Nillsoft\Db;
+namespace WebX\Db;
 
 abstract class TestInit extends \PHPUnit_Framework_TestCase  {
 
@@ -45,7 +45,7 @@ abstract class TestInit extends \PHPUnit_Framework_TestCase  {
                 return $dbSettings;
             }
         } else {
-            throw new \Exception("{$dbSettingsFile} not found (.gitignore). Template: " . json_encode(array("user"=>"USER","password"=>"PASSWORD","database"=>"DATABASE","host"=>"127.0.0.1"),JSON_PRETTY_PRINT));
+            throw new \Exception("{$dbSettingsFile} not found (.gitignore). Template: " . json_encode(array("user"=>"USER","password"=>"PASSWORD","database"=>"webx_db","host"=>"127.0.0.1"),JSON_PRETTY_PRINT));
         }
     }
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Nillsoft\Db;
+namespace WebX\Db;
 
-use Nillsoft\Db\Impl\MysqlInstanceProviderArray;
+use WebX\Db\Impl\MysqlInstanceProviderArray;
 
 class MysqlInstanceProviderArrayTest extends TestInit
 {

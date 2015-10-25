@@ -1,13 +1,13 @@
 {
-  "name" : "nillsoft/db",
+  "name" : "webx/db",
   "autoload": {
     "psr-4": {
-      "Nillsoft\\Db\\":  "src/Db/"
+      "WebX\\Db\\":  "src/Db/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Nillsoft\\Db\\":  "tests/Db/"
+      "WebX\\Db\\":  "tests/Db/"
     }
   },
   "require-dev" : {
