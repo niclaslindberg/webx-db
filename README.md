@@ -10,7 +10,7 @@ Main features of nillsoft-db
     $db = new Impl\DbImpl($config);
     $db->execute("INSERT INTO table (colA,colB) VALUES(:a,:b)",[a=>"valueA",b="valueB"];
 
-´´´
+```
 
 
 ## How to run tests
