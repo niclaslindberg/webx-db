@@ -18,8 +18,8 @@ Main features of webx-db
 ```
 ### A simple insert
 ```php
-    $values = [a=>"valueA",b="valueB"];
-    $db->execute("INSERT INTO table (colA,colB) VALUES(:a,:b)",$values);
+    $values = [a=>"valueA", b=>"valueB"];
+    $db->execute("INSERT INTO table (colA,colB) VALUES(:a,:b)", $values);
 ```
 
 ## How to run tests
