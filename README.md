@@ -1,8 +1,7 @@
 # A simple Mysql PHP wrapper.
-Main features of webx-db
-
+Main features of webx-db are:
 * Name based auto-escaped parametrization.
-* Hierarchical transactions by using `savepoint X` and `rollback to savepoint X` in inner transactions.
+* Nested transactions by using `savepoint X` and `rollback to savepoint X` in inner transactions.
 * Key violation exception with name of violated key.
 
 ## Getting started
@@ -48,7 +47,27 @@ Main features of webx-db
 
 
 ```
+### Nested transactions
+```php
 
+    $db->startTx();
+    $db->execute("INSERT INTO table (col) VALUES("1"));
+
+    $db->startTx();
+    $db->execute("INSERT INTO table (col) VALUES("2"));
+    $db->rollbackTx();
+
+    $db->startTx();
+    $db->execute("INSERT INTO table (col) VALUES("3"));
+    $db->commitTx();
+
+    $db->commitTx();
+
+```
+Database content after the above code is run.
+|col|
+|1|
+|3|
 
 
 ## How to run tests
