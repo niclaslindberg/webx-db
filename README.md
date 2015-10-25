@@ -1,4 +1,4 @@
-# A simple Mysql PHP wrapper.
+# WebX-Db - A light weight Mysql PHP library.
 Main features of webx-db are:
 * Name based auto-escaped parametrization.
 * Nested transactions by using `savepoint X` and `rollback to savepoint X` in inner transactions.
