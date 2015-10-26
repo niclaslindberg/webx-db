@@ -42,7 +42,7 @@ class DbTest extends TestInit
         $insertId = $this->db->insertId();
 
         if($row = $this->db->firstRow("SELECT textA FROM {$this->tableName} WHERE id=:id",array("id"=>$insertId))) {
-            $this->assertEquals($value,$row["textA"]);
+            $this->assertEquals($value,$row->string("textA"));
         } else {
             $this->fail("The row was not found.");
         }
@@ -64,12 +64,12 @@ class DbTest extends TestInit
         $this->db->startTx();
         $this->db->execute("INSERT INTO {$this->tableName} (textA) VALUES(:value)",array("value"=>$value));
         $row = $this->db->firstRow("SELECT COUNT(*) AS count FROM {$this->tableName}");
-        $count = intval($row['count']);
+        $count = $row->int('count');
         $this->assertEquals(1,$count);
 
         $this->db->rollbackTx();
         $row = $this->db->firstRow("SELECT COUNT(*) AS count FROM {$this->tableName}");
-        $count = intval($row['count']);
+        $count = $row->int('count');
         $this->assertEquals(0,$count);
     }
 
@@ -115,7 +115,7 @@ class DbTest extends TestInit
 
     private function hierarchicTxCount($value) {
         $row = $this->db->firstRow("SELECT COUNT(*) as count FROM {$this->tableName} WHERE textA=:value",array("value"=>$value));
-        return intval($row['count']);
+        return $row->int('count');
     }
 
     public function testInsertValueCommitValueExists() {
@@ -124,8 +124,7 @@ class DbTest extends TestInit
         $this->db->execute("INSERT INTO {$this->tableName} (textA) VALUES(:value)",array("value"=>$value));
         $this->db->commitTx();
         $row = $this->db->firstRow("SELECT COUNT(*) AS count FROM {$this->tableName}");
-        $count = intval($row['count']);
-        $this->assertEquals(1,$count);
+        $this->assertEquals(1,$row->int('count'));
     }
 
     public function testListener() {

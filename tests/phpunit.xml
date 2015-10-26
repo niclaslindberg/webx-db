@@ -3,6 +3,7 @@
         <testsuite name="all">
             <file>Db/MysqlInstanceProviderArrayTest.php</file>
             <file>Db/DbTest.php</file>
+            <file>Db/DefaultRowWrapperTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

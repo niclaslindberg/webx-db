@@ -7,6 +7,7 @@ use WebX\Db\QueryEscaper;
 use WebX\Db\DbException;
 use WebX\Db\DbDeadlockException;
 use WebX\Db\DbKeyException;
+use WebX\Db\RowWrapperFactory;
 
 class DbImpl implements Db {
 	/**
@@ -30,19 +31,36 @@ class DbImpl implements Db {
 	private $listeners;
 
 	/**
+	 * @var
+	 */
+	private $rowWrapperFactory;
+
+	/**
 	 * Creates a new DB.
 	 * @param array|\mysqli|MysqlInstanceProvider $config
 	 * @throws DbException
 	 */
-	public function __construct($config) {
-		if(is_array($config)) {
-			$this->instanceProvider = new MysqlInstanceProviderArray($config);
-		} else if ($config instanceof \mysqli) {
-			$this->instanceProvider = new MysqlInstanceProviderConnection($config);
-		} else if ($config instanceof MysqlInstanceProvider) {
-			$this->instanceProvider = $config;
+	public function __construct($mysqlConfig, array $config = null) {
+		if(is_array($mysqlConfig)) {
+			$this->instanceProvider = new MysqlInstanceProviderArray($mysqlConfig);
+		} else if ($mysqlConfig instanceof \mysqli) {
+			$this->instanceProvider = new MysqlInstanceProviderConnection($mysqlConfig);
+		} else if ($mysqlConfig instanceof MysqlInstanceProvider) {
+			$this->instanceProvider = $mysqlConfig;
 		} else {
 			throw new DbException("Db must be configured with an array, mysqli instance or MysqlInstanceProvider");
+		}
+
+		if($rowWrapperFactory = Properties::any("rowWrapperFactory",$config,false)) {
+			if($rowWrapperFactory instanceof RowWrapperFactory) {
+				$this->rowWrapperFactory = $rowWrapperFactory;
+			} else if (is_string($rowWrapperFactory)) {
+				$this->rowWrapperFactory = new $rowWrapperFactory();
+			} else {
+				throw new DbException("config.rowWrapperFactory must be either an instance of RowWrapperFactory or a class name");
+			}
+		} else {
+			$this->rowWrapperFactory = new DefaultRowWrapperFactory();
 		}
  	}
 	
@@ -133,7 +151,7 @@ class DbImpl implements Db {
 		$rows = array();
 		if($result = $this->mysql->query($sql,MYSQLI_STORE_RESULT)) {
 			while($row = $result->fetch_assoc()) {
-				$rows[] = $row;
+				$rows[] = $this->rowWrapperFactory->create($row);
 			}
 			$result->close();
 		}
@@ -152,7 +170,7 @@ class DbImpl implements Db {
 		$this->log($sql);
 		$row = null;
 		if($result = $this->mysql->query($sql,MYSQLI_STORE_RESULT)) {
-			$row = $result->fetch_array();
+			$row = $this->rowWrapperFactory->create($result->fetch_array());
 			$result->close();
 		}
 		$this->checkDbError($sql);

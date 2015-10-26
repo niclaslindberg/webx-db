@@ -32,14 +32,14 @@ interface Db
      * Returns
      * @param string $sql
      * @param array|null $parameters
-     * @return array[]
+     * @return RowWrapper[]
      */
     public function allRows($sql, array $parameters = null);
 
     /**
      * @param string $sql
      * @param array|null $parameters
-     * @return array[]
+     * @return RowWrapper
      */
     public function firstRow($sql, array $parameters = null);
 

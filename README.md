@@ -37,8 +37,8 @@ Main features and design goals of webx-db:
 ### A simple select
 ```php
     foreach($db->allRows("SELECT * FROM table") as $row) {
-        echo($row['first']);
-        echo($row['last']);
+        echo($row->string('first'));
+        echo($row->string('last'));
     }
 ```
 
@@ -50,7 +50,7 @@ Main features and design goals of webx-db:
         echo("Person registered");
     } catch(DbKeyException $e) {
         if($e->key()==='emailKey') { // Name of the defined unique key in MySQL
-            echo("The {$person['email']} is already registered";
+            echo("The {$person->string('email')} is already registered";
         } else {
             echo("Some other key violation occured.");
         }
