@@ -51,6 +51,12 @@ interface Db
     public function execute($sql, array $parameters = null);
 
     /**
+     * Escapes the value to valid SQL.
+     * @param $value
+     * @return string
+     */
+    public function escape($value);
+    /**
      *
      * @return int|null
      */
