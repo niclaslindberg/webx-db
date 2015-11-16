@@ -19,7 +19,7 @@ abstract class TestInit extends \PHPUnit_Framework_TestCase  {
         $mysql = new \mysqli($dbSettings->host,$dbSettings->user,$dbSettings->password,$dbSettings->database);
         error_reporting($err_level);
         if(!$mysql->real_query("DROP TABLE IF EXISTS " . self::$DB_TABLE_NAME)) {
-            throw new \Exception("Could not drop test table:" . self::$DB_TABLE_NAME);
+            throw new \Exception("Could not drop test table:" . self::$DB_TABLE_NAME . " Error:" . $mysql->error);
         }
         if(!$mysql->real_query(self::tableDefinition())) {
             throw new \Exception("Could not create test table:" . self::$DB_TABLE_NAME . " Error:" . $mysql->error);
@@ -40,12 +40,12 @@ abstract class TestInit extends \PHPUnit_Framework_TestCase  {
 
     protected static function dbSettings($asArray = true) {
         $dbSettingsFile = dirname(__DIR__) . "/db_settings.json";
-        if($dbSettingsContent = file_get_contents($dbSettingsFile)) {
+        if($dbSettingsContent = @file_get_contents($dbSettingsFile)) {
             if($dbSettings = json_decode($dbSettingsContent,$asArray)) {
                 return $dbSettings;
             }
         } else {
-            throw new \Exception("{$dbSettingsFile} not found (.gitignore). Template: " . json_encode(array("user"=>"USER","password"=>"PASSWORD","database"=>"webx_db","host"=>"127.0.0.1"),JSON_PRETTY_PRINT));
+            return (object)array("user"=>null,"password"=>null,"database"=>"webx_db","host"=>"127.0.0.1");
         }
     }
 

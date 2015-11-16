@@ -41,7 +41,7 @@ class DbImpl implements Db {
 	 * @throws DbException
 	 */
 	public function __construct($mysqlConfig, array $config = null) {
-		if(is_array($mysqlConfig)) {
+		if(is_array($mysqlConfig) || is_object($mysqlConfig)) {
 			$this->instanceProvider = new MysqlInstanceProviderArray($mysqlConfig);
 		} else if ($mysqlConfig instanceof \mysqli) {
 			$this->instanceProvider = new MysqlInstanceProviderConnection($mysqlConfig);
@@ -170,7 +170,9 @@ class DbImpl implements Db {
 		$this->log($sql);
 		$row = null;
 		if($result = $this->mysql->query($sql,MYSQLI_STORE_RESULT)) {
-			$row = $this->rowWrapperFactory->create($result->fetch_array());
+			if($dbRow = $result->fetch_array()) {
+				$row = $this->rowWrapperFactory->create($dbRow);
+			}
 			$result->close();
 		}
 		$this->checkDbError($sql);

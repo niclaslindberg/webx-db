@@ -9,9 +9,11 @@ class MysqlInstanceProviderArray implements MysqlInstanceProvider {
 
     private $settings;
 
-    public function __construct(array $settings) {
-        if($settings) {
+    public function __construct($settings) {
+        if(is_array($settings)) {
             $this->settings = $settings;
+        } else if (is_object($settings)) {
+            $this->settings = (array)$settings;
         } else {
             throw new DbException("Misssing settings");
         }

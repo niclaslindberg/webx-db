@@ -1,9 +1,7 @@
 <phpunit bootstrap="../vendor/autoload.php">
     <testsuites>
-        <testsuite name="all">
-            <file>Db/MysqlInstanceProviderArrayTest.php</file>
-            <file>Db/DbTest.php</file>
-            <file>Db/DefaultRowWrapperTest.php</file>
+        <testsuite name="db">
+            <directory>Db</directory>
         </testsuite>
     </testsuites>
 </phpunit>
