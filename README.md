@@ -78,6 +78,15 @@ Main features and design goals of webx-db:
 Note: If an outer tx is rolled back all its inner txs are also rolled back.
 
 
+### Wrap transactions in a closure
+The execution of the closure is wrapped in a `startTx()` `commitTx()|rollbackTx()` depending on if the closure throws an exception or not.
+```php
+    $db->executeInTx(function($db){
+        $db->execute("INSERT INTO table (col) VALUES('1')");
+        $db->execute("INSERT INTO table (col) VALUES('2')"); // Will not be commited
+    });
+```
+Note: If an outer tx is rolled back all its inner txs are also rolled back.
 
 ## How to run tests
 In the root of the project:
