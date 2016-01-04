@@ -83,7 +83,11 @@ The execution of the closure is wrapped in a `startTx()` `commitTx()|rollbackTx(
 ```php
     $db->executeInTx(function($db){
         $db->execute("INSERT INTO table (col) VALUES('1')");
-        $db->execute("INSERT INTO table (col) VALUES('2')"); // Will not be commited
+        $db->execute("INSERT INTO table (col) VALUES('2')");
+
+        if(true) { //Now the transaction will be rolled back
+            throw new \Exception("An error occured");
+        }
     });
 ```
 Note: If an outer tx is rolled back all its inner txs are also rolled back.
