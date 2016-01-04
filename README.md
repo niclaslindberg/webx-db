@@ -90,7 +90,6 @@ The execution of the closure is wrapped in a `startTx()` `commitTx()|rollbackTx(
         }
     });
 ```
-Note: If an outer tx is rolled back all its inner txs are also rolled back.
 
 ## How to run tests
 In the root of the project:
