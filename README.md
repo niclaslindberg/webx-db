@@ -81,7 +81,7 @@ Note: If an outer tx is rolled back all its inner txs are also rolled back.
 ### Wrap transactions in a closure
 The execution of the closure is wrapped in a `startTx()` `commitTx()|rollbackTx()` depending on if the closure throws an exception or not.
 ```php
-    $db->executeInTx(function($db){
+    $db->executeInTx(function($db) { // The db instance must be passed as the only argument to closure.
         $db->execute("INSERT INTO table (col) VALUES('1')");
         $db->execute("INSERT INTO table (col) VALUES('2')");
 
