@@ -127,6 +127,41 @@ class DbTest extends TestInit
         $this->assertEquals(1,$row->int('count'));
     }
 
+    public function testExecuteInTxWithCommitSuccess() {
+        $value = "abc";
+        $db = $this->db;
+        $this->db->executeInTx(function(Db $db) use ($value){
+            $this->db->execute("INSERT INTO {$this->tableName} (textA) VALUES(:value)",array("value"=>$value));
+        });
+        $row = $this->db->firstRow("SELECT COUNT(*) AS count FROM {$this->tableName}");
+        $this->assertEquals(1,$row->int('count'));
+    }
+
+    public function testExecuteInTxWithReturnValue() {
+        $value = "abc";
+        $result = $this->db->executeInTx(function(Db $db) use ($value){
+            return $value;
+        });
+        $this->assertEquals($result,$value);
+    }
+
+    public function testExecuteInTxWithCommitFail() {
+        $value = "abc";
+        $db = $this->db;
+        $exceptionThrown = false;
+        try {
+            $this->db->executeInTx(function(Db $db) use ($value){
+                $db->execute("INSERT INTO {$this->tableName} (textA) VALUES(:value)",array("value"=>$value));
+                throw new \Exception("Closure execution failed");
+            });
+        } catch(\Exception $e) {
+            $exceptionThrown = true;
+        }
+        $this->assertTrue($exceptionThrown);
+        $row = $this->db->firstRow("SELECT COUNT(*) AS count FROM {$this->tableName}");
+        $this->assertEquals(0,$row->int('count')); //Nothing is inserted.
+    }
+
     public function testListener() {
 
     }

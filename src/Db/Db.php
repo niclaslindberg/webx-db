@@ -51,6 +51,20 @@ interface Db
     public function execute($sql, array $parameters = null);
 
     /**
+     * Executes the given closure in startTx(), commitTx|rollbackTx calls. If the execution of the closure throws any Exception the transaction will be rolled back otherwise the transaction will be committed.
+     * The closure must take the act
+     * Ex:
+     * executeInTx(function(Db $db) {
+     *   $db->execute(sql1);
+     *   $db->execute(sql2);
+     * });
+     *
+     * @param \Closure $closure with one parameter Db $db
+     * @return mixed The return value of the provided closure
+     */
+    public function executeInTx(\Closure $closure);
+
+    /**
      * Escapes the value to valid SQL.
      * @param $value
      * @return string

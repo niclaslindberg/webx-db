@@ -93,6 +93,26 @@ class DbImpl implements Db {
 		}
 	}
 
+	public function executeInTx(\Closure $closure)
+	{
+		if($closure) {
+			$refMethod = new \ReflectionFunction($closure);
+			if(($refParams = $refMethod->getParameters()) && count($refParams)===1) {
+				try {
+					$this->startTx();
+					$result = $closure($this);
+					$this->commitTx();
+					return $result;
+				} catch(\Exception $e) {
+					$this->rollbackTx();
+					throw $e;
+				}
+			} else {
+				throw new DbException("Tx closures must take one argument of type WebX\\Db\\Db");
+			}
+		}
+	}
+
 	public function escape($value) {
 		$this->initConnection();
 		return $this->escapeInternal($value);
