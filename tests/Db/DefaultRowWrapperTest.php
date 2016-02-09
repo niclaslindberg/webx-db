@@ -43,4 +43,15 @@ class DefaultRowWrapperTest extends \PHPUnit_Framework_TestCase
 
     }
 
+
+    public function testDateTime() {
+        $row = array("dateA"=>"2001-02-03 04:05:06");
+        $wrapper = new DefaultRowWrapper($row);
+        $dateTime = $wrapper->dateTime("dateA");
+        $this->assertNotNull($dateTime);
+        $this->assertInstanceOf(\DateTime::class,$dateTime);
+        $this->assertEquals("2001-02-03 04:05:06",$dateTime->format("Y-m-d H:i:s"));
+
+    }
+
 }

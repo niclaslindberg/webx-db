@@ -60,4 +60,10 @@ interface RowWrapper {
      */
     public function json($id, $default=null, $assoc = false);
 
+    /**
+     * @param $id
+     * @return \DateTime
+     */
+    public function dateTime($id);
+
 }

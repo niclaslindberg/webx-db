@@ -9,6 +9,7 @@
 namespace WebX\Db\Impl;
 
 
+use DateTime;
 use WebX\Db\RowWrapper;
 
 class DefaultRowWrapper implements RowWrapper
@@ -81,4 +82,17 @@ class DefaultRowWrapper implements RowWrapper
         }
         return $default;
     }
+
+    public function dateTime($id)
+    {
+        if(NULL !== ($val = $this->read($id))) {
+            if(false !== ($ts = strtotime($val))) {
+                $dateTime = new DateTime();
+                $dateTime->setTimestamp($ts);
+                return $dateTime;
+            }
+        }
+        return null;
+    }
+
 }
