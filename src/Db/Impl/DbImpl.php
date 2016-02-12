@@ -128,6 +128,8 @@ class DbImpl implements Db {
 			} elseif(is_float($value) || is_double($value)) {
 				//Localization may add commas.
 				return str_replace(",",".",strval($value));
+			} else if($value instanceof DateTime) {
+				return $this->escapeInternal(date("Y-m-d H:i:s",$value->getTimestamp()));
 			} else if (is_array($value) || is_object($value)) {
 				$escapedArray = array();
 				foreach($value as $v) {
@@ -136,15 +138,13 @@ class DbImpl implements Db {
 				return implode(",", $escapedArray);
 			} else if(is_bool($value)) {
 				return $value ? "1" : "0";
-			} else if(is_a($value,DateTime::class)) {
-				return date("Y-m-d H:i:s",$value->getTimestamp());
-			} else {
+			}  else {
 				return $value;
 			}
+
 		}
 		return "NULL";
 	}
-
 	/**
 	 * Returns the given sql with inserted escaped parameters
 	 * @param unknown $sql
