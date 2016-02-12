@@ -8,6 +8,7 @@ use WebX\Db\DbException;
 use WebX\Db\DbDeadlockException;
 use WebX\Db\DbKeyException;
 use WebX\Db\RowWrapperFactory;
+use \DateTime;
 
 class DbImpl implements Db {
 	/**
@@ -135,6 +136,8 @@ class DbImpl implements Db {
 				return implode(",", $escapedArray);
 			} else if(is_bool($value)) {
 				return $value ? "1" : "0";
+			} else if(is_a($value,DateTime::class)) {
+				return date("Y-m-d H:i:s",$value->getTimestamp());
 			} else {
 				return $value;
 			}
