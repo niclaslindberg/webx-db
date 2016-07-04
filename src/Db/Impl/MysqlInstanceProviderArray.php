@@ -25,7 +25,7 @@ class MysqlInstanceProviderArray implements MysqlInstanceProvider {
             $host = Properties::string("host", $settings, false, "127.0.0.1");
             $user = Properties::string("user", $settings, false);
             $password = Properties::string("password", $settings, false);
-            $database = Properties::string("database", $settings, true);
+            $database = Properties::string("database", $settings, false,"");
             $port = Properties::int("port", $settings, false, 3306);
             $autoCommit = Properties::bool("autoCommit",$settings,false,true);
             $charSet = Properties::string("charSet",$settings,false,"utf8");
