@@ -83,9 +83,11 @@ interface Db
 
 
     /**
-     * @param DbListener $listener
+     * @param DbListener|Closure $listener (if Closure must have the declaration function($sql){})
      * @return void
      */
-    public function addDbListener(DbListener $listener);
+    public function addDbListener($listener);
+
+
     
 }

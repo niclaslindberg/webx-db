@@ -251,17 +251,24 @@ class DbImpl implements Db {
 	}
 
 	private function log($sql) {
+
 		if($this->listeners) {
 			foreach ($this->listeners as $listener) {
 				try {
-					$listener->onExecuted($sql);
+					if($listener instanceof \Closure) {
+						$listener($sql);
+					} else if ($listener instanceof DbListener) {
+						$listener->onExecuted($sql);
+					} else {
+						error_log("Bad listener. Must be either a Closure or DbListener");
+					}
 				} catch (\Exception $e) {
 				}
 			}
 		}
 	}
 
-	public function addDbListener(DbListener $listener) {
+	public function addDbListener($listener) {
 		if($listener) {
 			$this->listeners[] = $listener;
 		}

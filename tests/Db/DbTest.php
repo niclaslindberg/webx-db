@@ -113,6 +113,7 @@ class DbTest extends TestInit
         $this->db->execute("INSERT INTO {$this->tableName} (textA) VALUES(:value)",array("value"=>$value));
     }
 
+
     private function hierarchicTxCount($value) {
         $row = $this->db->firstRow("SELECT COUNT(*) as count FROM {$this->tableName} WHERE textA=:value",array("value"=>$value));
         return $row->int('count');
@@ -143,6 +144,17 @@ class DbTest extends TestInit
             return $value;
         });
         $this->assertEquals($result,$value);
+    }
+
+    public function testClosureListener() {
+        $sql = "SELECT * FROM {$this->tableName}";
+        $executedSql = null;
+        $this->db->addDbListener(function($sql) use (&$executedSql){
+            $executedSql = $sql;
+        });
+        $this->db->execute($sql);
+
+        $this->assertEquals($sql,$executedSql);
     }
 
     public function testExecuteInTxWithCommitFail() {
